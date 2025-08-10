@@ -6,7 +6,7 @@
     class="formulario ff-prompt"
     [formGroup]="formulario"
     *ngIf="formAberto"
-    [@shownStateTrigger]="formAberto ? 'shown' : 'notShown'"
+    @shownStateTrigger
   >
     <label for="descricao">Descrição da tarefa</label>
     <input
