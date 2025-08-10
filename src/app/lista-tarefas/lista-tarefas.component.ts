@@ -32,7 +32,7 @@ import {
         })
       ),
       transition('default => highlighted', [
-        style({ transform: 'scale(1.02)' }),
+        animate('200ms ease-out', style({ transform: 'scale(1.02)' })),
         animate(200),
       ]),
     ]),
