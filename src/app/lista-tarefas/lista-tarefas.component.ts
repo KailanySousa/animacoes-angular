@@ -4,13 +4,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TarefaService } from 'src/app/service/tarefa.service';
 import { Tarefa } from '../interface/tarefa';
-import { highlightedState, shownStateTrigger } from '../animations';
+import {
+  checkButtonTrigger,
+  highlightedStateTrigger,
+  shownStateTrigger,
+} from '../animations';
 
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
   styleUrls: ['./lista-tarefas.component.css'],
-  animations: [highlightedState, shownStateTrigger],
+  animations: [highlightedStateTrigger, shownStateTrigger, checkButtonTrigger],
 })
 export class ListaTarefasComponent implements OnInit {
   listaTarefas: Tarefa[] = [];
@@ -27,6 +31,7 @@ export class ListaTarefasComponent implements OnInit {
   });
 
   indexTarefa: number = -1;
+  id: number = 0;
 
   constructor(
     private service: TarefaService,
@@ -114,6 +119,7 @@ export class ListaTarefasComponent implements OnInit {
     this.service.buscarPorId(id!).subscribe((tarefa) => {
       this.service.atualizarStatusTarefa(tarefa).subscribe(() => {
         this.listarAposCheck();
+        this.id = id;
       });
     });
   }
